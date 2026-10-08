@@ -1,0 +1,27 @@
+$kind: http-request
+order: 2000
+method: GET
+url: 'https://api.open-meteo.com/v1/forecast?latitude=40.7128&longitude=-74.0060&daily=temperature_2m_max,temperature_2m_min,precipitation_sum&timezone=America/New_York&forecast_days=7'
+queryParams:
+  - key: latitude
+    value: '40.7128'
+  - key: longitude
+    value: '-74.0060'
+  - key: daily
+    value: 'temperature_2m_max,temperature_2m_min,precipitation_sum'
+  - key: timezone
+    value: America/New_York
+  - key: forecast_days
+    value: '7'
+headers:
+  - key: Accept
+    value: application/json
+scripts:
+  - type: afterResponse
+    language: text/javascript
+    code: |-
+      pm.test("Status is 200", () => pm.response.to.have.status(200));
+      pm.test("Returns 7 days of forecast", () => {
+          const data = pm.response.json();
+          pm.expect(data.daily.time.length).to.equal(7);
+      });

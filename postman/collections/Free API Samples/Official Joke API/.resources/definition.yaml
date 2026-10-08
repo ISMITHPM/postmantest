@@ -1,0 +1,3 @@
+$kind: collection
+name: Official Joke API
+description: 'Get random jokes delivered as JSON. https://official-joke-api.appspot.com'

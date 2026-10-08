@@ -1,0 +1,27 @@
+$kind: http-request
+order: 1000
+method: GET
+url: 'https://api.open-meteo.com/v1/forecast?latitude=51.5074&longitude=-0.1278&current_weather=true&wind_speed_unit=mph'
+queryParams:
+  - key: latitude
+    value: '51.5074'
+  - key: longitude
+    value: '-0.1278'
+  - key: current_weather
+    value: 'true'
+  - key: wind_speed_unit
+    value: mph
+headers:
+  - key: Accept
+    value: application/json
+scripts:
+  - type: afterResponse
+    language: text/javascript
+    code: |-
+      pm.test("Status is 200", () => pm.response.to.have.status(200));
+      pm.test("Response has current weather", () => {
+          const data = pm.response.json();
+          pm.expect(data).to.have.property('current_weather');
+          pm.expect(data.current_weather).to.have.property('temperature');
+          pm.expect(data.current_weather).to.have.property('windspeed');
+      });

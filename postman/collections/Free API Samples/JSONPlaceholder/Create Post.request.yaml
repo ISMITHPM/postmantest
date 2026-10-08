@@ -1,0 +1,26 @@
+$kind: http-request
+order: 3000
+method: POST
+url: 'https://jsonplaceholder.typicode.com/posts'
+headers:
+  - key: Content-Type
+    value: application/json
+  - key: Accept
+    value: application/json
+body:
+  type: json
+  content: |-
+    {
+      "title": "Hello Postman",
+      "body": "Testing the JSONPlaceholder API",
+      "userId": 1
+    }
+scripts:
+  - type: afterResponse
+    language: text/javascript
+    code: |-
+      pm.test("Status is 201", () => pm.response.to.have.status(201));
+      pm.test("Response contains new post id", () => {
+          const data = pm.response.json();
+          pm.expect(data).to.have.property('id');
+      });

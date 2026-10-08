@@ -1,0 +1,3 @@
+$kind: collection
+name: Open-Meteo Weather
+description: 'Free weather forecast API, no API key required. https://open-meteo.com'

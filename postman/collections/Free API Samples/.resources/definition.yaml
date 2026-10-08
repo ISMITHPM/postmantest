@@ -1,0 +1,13 @@
+$kind: collection
+name: 'Free API Samples'
+description: |-
+  A curated collection of free, no-auth public APIs to explore and experiment with.
+  All requests work out of the box — no environment or API key needed.
+
+  APIs included:
+  - JSONPlaceholder: Fake REST API for testing
+  - REST Countries: Country data and info
+  - Open-Meteo: Free weather forecasts
+  - PokeAPI: Pokemon data
+  - Dog CEO: Random dog images
+  - Official Joke API: Random jokes

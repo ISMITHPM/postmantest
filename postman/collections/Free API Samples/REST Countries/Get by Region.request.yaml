@@ -1,0 +1,20 @@
+$kind: http-request
+order: 3000
+method: GET
+url: 'https://restcountries.com/v3.1/region/europe?fields=name,capital'
+queryParams:
+  - key: fields
+    value: 'name,capital'
+headers:
+  - key: Accept
+    value: application/json
+scripts:
+  - type: afterResponse
+    language: text/javascript
+    code: |-
+      pm.test("Status is 200", () => pm.response.to.have.status(200));
+      pm.test("Returns European countries", () => {
+          const data = pm.response.json();
+          pm.expect(data).to.be.an('array');
+          pm.expect(data.length).to.be.above(10);
+      });

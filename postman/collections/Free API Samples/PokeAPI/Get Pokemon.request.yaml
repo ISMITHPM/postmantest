@@ -1,0 +1,17 @@
+$kind: http-request
+order: 1000
+method: GET
+url: 'https://pokeapi.co/api/v2/pokemon/pikachu'
+headers:
+  - key: Accept
+    value: application/json
+scripts:
+  - type: afterResponse
+    language: text/javascript
+    code: |-
+      pm.test("Status is 200", () => pm.response.to.have.status(200));
+      pm.test("Returns Pikachu", () => {
+          const data = pm.response.json();
+          pm.expect(data.name).to.equal('pikachu');
+          pm.expect(data.base_experience).to.be.a('number');
+      });

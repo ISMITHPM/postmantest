@@ -1,0 +1,3 @@
+$kind: collection
+name: REST Countries
+description: 'Get information about countries. https://restcountries.com'
