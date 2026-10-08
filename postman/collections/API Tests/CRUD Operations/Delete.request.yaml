@@ -1,0 +1,14 @@
+$kind: http-request
+order: 5000
+method: DELETE
+url: '{{baseUrl}}/{{apiVersion}}/resources/{{resourceId}}'
+headers:
+  - key: Authorization
+    value: 'Bearer {{apiKey}}'
+scripts:
+  - type: afterResponse
+    language: text/javascript
+    code: |-
+      pm.test("Status code is 200 or 204", function () {
+          pm.expect(pm.response.code).to.be.oneOf([200, 204]);
+      });

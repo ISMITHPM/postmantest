@@ -1,0 +1,32 @@
+$kind: http-request
+order: 3000
+method: POST
+url: '{{baseUrl}}/{{apiVersion}}/resources'
+headers:
+  - key: Content-Type
+    value: application/json
+  - key: Accept
+    value: application/json
+  - key: Authorization
+    value: 'Bearer {{apiKey}}'
+body:
+  type: json
+  content: |-
+    {
+      "name": "New Resource",
+      "description": "Created via Postman"
+    }
+scripts:
+  - type: afterResponse
+    language: text/javascript
+    code: |-
+      pm.test("Status code is 201", function () {
+          pm.response.to.have.status(201);
+      });
+
+      pm.test("Response has id field", function () {
+          var jsonData = pm.response.json();
+          pm.expect(jsonData).to.have.property('id');
+          // Store the new ID for subsequent requests
+          pm.collectionVariables.set("resourceId", jsonData.id);
+      });

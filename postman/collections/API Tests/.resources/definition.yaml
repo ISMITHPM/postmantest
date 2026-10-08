@@ -1,0 +1,9 @@
+$kind: collection
+name: 'API Tests'
+description: |-
+  Starter collection for API testing. Update {{baseUrl}} via the active environment.
+  Uses environment variables: baseUrl, apiVersion, apiKey.
+variables:
+  - key: resourceId
+    value: '1'
+    description: 'Default resource ID used in parameterised requests'

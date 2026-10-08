@@ -1,0 +1,15 @@
+name: Test
+values:
+  - key: baseUrl
+    value: 'https://your-test-api.example.com'
+    enabled: true
+  - key: apiVersion
+    value: v1
+    enabled: true
+  - key: apiKey
+    value: ''
+    type: secret
+    enabled: true
+  - key: timeout
+    value: '10000'
+    enabled: true

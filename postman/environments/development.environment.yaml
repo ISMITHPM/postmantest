@@ -1,0 +1,15 @@
+name: Development
+values:
+  - key: baseUrl
+    value: 'http://localhost:3000'
+    enabled: true
+  - key: apiVersion
+    value: v1
+    enabled: true
+  - key: apiKey
+    value: ''
+    type: secret
+    enabled: true
+  - key: timeout
+    value: '5000'
+    enabled: true
